@@ -1,0 +1,33 @@
+<form method="post">
+    {%csrf_token%}
+    {%if name%}
+    <input id="name" placeholder='Введите имя' type="text" name="name" value={{name}}>
+    {%else%}
+    <input id="name" placeholder='Введите имя' type="text" name="name">
+    {%endif%}
+    {%if phone_number%}
+    <input id="phone_number" placeholder='Введите номер телефона' type="text" name="phone_number"
+        value={{phone_number}}>
+    {%else%}
+    <input id="phone_number" placeholder='Введите номер телефона' type="text" name="phone_number">
+    {%endif%}
+    <input type="submit" value="Отправить">
+</form>
+{%if errors%}
+{%for error in errors%}
+<p style="color:red;">{{error}}</p>
+{%endfor%}
+{%if fmts%}
+{%for fmt in fmts%}
+<p style="color:red;">{{fmt}}</p>
+
+{%endfor%}
+{%endif%}
+{%endif%}
+{%if success == 'OK'%}
+<p style="color:green;">Успешно добавлено</p>
+{%endif%}
+
+{%for user in users%}
+<p>Имя: {{user.name}}, Номер телефона: {{user.phone_number}}</p>
+{%endfor%}
